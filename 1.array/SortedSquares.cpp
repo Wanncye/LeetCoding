@@ -7,19 +7,17 @@ public:
 
 
     vector<int> sortedSquares(vector<int>& nums) {
-        int endP = nums.size()-1;
-        vector<int> result(nums.size(), 0);
-        for(int startP = 0; startP <= endP; startP++){
-            if(abs(nums[endP])>=abs(nums[startP])){
-                result[endP] = nums[endP] * nums[endP];
-                endP--;
-            }else{
-                result[endP] = nums[startP] * nums[startP];
-                startP++;
+        int k = A.size() - 1;
+        vector<int> result(A.size(), 0);
+        for (int i = 0, j = A.size() - 1; i <= j;) { // 注意这里要i <= j，因为最后要处理两个元素
+            if (A[i] * A[i] < A[j] * A[j])  {
+                result[k--] = A[j] * A[j];
+                j--;
             }
-        }
-        for(int i=0;i<result.size();i++){
-            cout<<result[i]<<" ";
+            else {
+                result[k--] = A[i] * A[i];
+                i++;
+            }
         }
         return result;
     }
