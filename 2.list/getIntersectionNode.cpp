@@ -37,7 +37,7 @@ public:
         //相交指的是到那个相交点之后，两个链表指向的节点一样
         //判断两个指针相不相等，是看这两个指针指向的地方相不相同
         //比如在链表节点里面，不是看val值和next的值相不相等
-        while(curA != NULL && &curA != &curB){
+        while(curA != NULL && curA != curB){
         // while(curA != NULL && (curA->val != curB->val || curA->next != curB->next)){
             curA = curA->next;
             curB = curB->next;
@@ -50,8 +50,9 @@ public:
 int main(){
     int a[7] = {1,2,6,3,4,5,6};
     ListNode *head = new ListNode(1);
+    ListNode *head1 = new ListNode(1);
     ListNode *p = head;
-    cout<<p->val<<endl;
-    cout<<(p==head)<<endl;
+    ListNode *d = head1;
+    cout<<(p==d)<<endl;
 
 }
