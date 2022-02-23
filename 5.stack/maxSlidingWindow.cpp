@@ -17,7 +17,7 @@ public:
     //保证双端队列排序为由大到小
     void push(int i){
         while(!dq.empty() && i>dq.back()){
-            dq.pop_front();
+            dq.pop_back();
         }
         dq.push_back(i);
     }
