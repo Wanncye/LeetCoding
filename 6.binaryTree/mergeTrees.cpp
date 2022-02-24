@@ -13,11 +13,10 @@ struct TreeNode {
 class Solution {
 public:
     TreeNode* mergeTrees(TreeNode* root1, TreeNode* root2) {
+        if(!root1) return root2;
+        if(!root2) return root1;
         int val;
-        if(!root1 && root2) val=root2->val;
-        else if(root1 && !root2) val=root1->val;
-        else if(root1 && root2) val=root1->val+root2->val;
-        else if(!root1 && !root2) return NULL;
+        val = root1->val+root2->val;
 
         TreeNode* newRoot = new TreeNode(val);
         newRoot->left = mergeTrees(root1->left, root2->left);
