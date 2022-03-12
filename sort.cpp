@@ -7,7 +7,7 @@ public:
     vector<int> array;
     mySort(vector<int> arr):array(arr){};
 
-    void myPrint(){
+    void myPrint() const{
         for(int i:array) cout<<i<<" ";
         cout<<endl;
     }
@@ -133,6 +133,11 @@ public:
         myPrint();
         return array;
     };
+
+    string& returnReference(string& a){
+        a="1452;";
+        return a;
+    }
 };
 
 int main() {
@@ -144,4 +149,6 @@ int main() {
     mySortObj.selectSort();
     mySortObj.shellSort();
     // mySortObj.shellSort();
+    string a = "s54df5s";
+    cout<<mySortObj.returnReference(a);
 }
