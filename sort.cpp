@@ -136,8 +136,6 @@ public:
 
     void coutSort(){
         int length = array.size();
-        // if (array == nullptr || length <= 0)
-        //     return;
         //确定数列最大值
         int max = array[0];
         for (int i = 1; i < length; ++i){
@@ -161,6 +159,36 @@ public:
         }
         myPrint();
     }
+
+    void buckSort() {
+        int len = array.size();
+        int bucket[5001] = {0};
+        for (int num:array) {
+            bucket[num]++;
+        }
+        int big, small;
+        if (len&1){
+            big = len-2;
+            small = len-1;
+        }else{
+            big = len-1;
+            small = len-2;
+        }
+        int j = 5000;
+        // insert big
+        for (int i = 1; i <= big; i+=2) {
+            while (bucket[j] == 0) j--;
+            array[i]=j;
+            bucket[j]--;
+        }
+        // insert small
+        for (int i = 0; i <= small; i+=2) {
+            while (bucket[j]==0)j--;
+            array[i]=j;
+            bucket[j]--;
+        }
+        myPrint();
+    }
 };
 
 int main() {
@@ -171,5 +199,6 @@ int main() {
     // mySortObj.bubbleSort();
     // mySortObj.selectSort();
     // mySortObj.shellSort();
-    mySortObj.coutSort();
+    // mySortObj.coutSort();
+    mySortObj.buckSort();
 }
