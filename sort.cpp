@@ -133,14 +133,43 @@ public:
         myPrint();
         return array;
     };
+
+    void coutSort(){
+        int length = array.size();
+        // if (array == nullptr || length <= 0)
+        //     return;
+        //确定数列最大值
+        int max = array[0];
+        for (int i = 1; i < length; ++i){
+            if (array[i] > max)
+                max = array[i];
+        }
+
+        // 确定统计数组长度并进行初始化
+        int* coutData = new int[max + 1];
+        for (int i = 0; i <= max; ++i)
+            coutData[i] = 0;
+        // 遍历数组，统计每个数出现的次数
+        for (int i = 0; i < length; ++i)
+            ++coutData[array[i]];
+        // 排序数组，某个数出现了几次，便在data里累计输出几次
+        int index = 0;
+        for (int i = 0; i <= max; ++i){
+            for (int j = 0; j < coutData[i]; ++j){
+                array[index++] = i;
+            }
+        }
+        myPrint();
+    }
 };
 
 int main() {
     vector<int> array = {5,1,14,3,6,8,2,15,7};
     mySort mySortObj(array);
-    mySortObj.quickSort();
-    mySortObj.insertSort();
-    mySortObj.bubbleSort();
-    mySortObj.selectSort();
-    mySortObj.shellSort();
+    // mySortObj.quickSort();
+    // mySortObj.insertSort();
+    // mySortObj.bubbleSort();
+    // mySortObj.selectSort();
+    // mySortObj.shellSort();
+    mySortObj.coutSort();
 }
