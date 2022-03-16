@@ -130,6 +130,7 @@ class BlackFactory : public Factory
 
 int main()
 {
+    //test
     WhiteFactory* white = new WhiteFactory();
     Coat* whiteCoat =  white->createCoat();
     Pants* whitePants =  white->createPants();
