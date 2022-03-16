@@ -138,17 +138,74 @@ public:
         a="1452;";
         return a;
     }
+    
+    void coutSort(){
+        int length = array.size();
+        //确定数列最大值
+        int max = array[0];
+        for (int i = 1; i < length; ++i){
+            if (array[i] > max)
+                max = array[i];
+        }
+
+        // 确定统计数组长度并进行初始化
+        int* coutData = new int[max + 1];
+        for (int i = 0; i <= max; ++i)
+            coutData[i] = 0;
+        // 遍历数组，统计每个数出现的次数
+        for (int i = 0; i < length; ++i)
+            ++coutData[array[i]];
+        // 排序数组，某个数出现了几次，便在data里累计输出几次
+        int index = 0;
+        for (int i = 0; i <= max; ++i){
+            for (int j = 0; j < coutData[i]; ++j){
+                array[index++] = i;
+            }
+        }
+        myPrint();
+    }
+
+    void buckSort() {
+        int len = array.size();
+        int bucket[5001] = {0};
+        for (int num:array) {
+            bucket[num]++;
+        }
+        int big, small;
+        if (len&1){
+            big = len-2;
+            small = len-1;
+        }else{
+            big = len-1;
+            small = len-2;
+        }
+        int j = 5000;
+        // insert big
+        for (int i = 1; i <= big; i+=2) {
+            while (bucket[j] == 0) j--;
+            array[i]=j;
+            bucket[j]--;
+        }
+        // insert small
+        for (int i = 0; i <= small; i+=2) {
+            while (bucket[j]==0)j--;
+            array[i]=j;
+            bucket[j]--;
+        }
+        myPrint();
+    }
 };
 
 int main() {
     vector<int> array = {5,1,14,3,6,8,2,15,7};
     mySort mySortObj(array);
-    mySortObj.quickSort();
-    mySortObj.insertSort();
-    mySortObj.bubbleSort();
-    mySortObj.selectSort();
-    mySortObj.shellSort();
+    // string a = "s54df5s";
+    // cout<<mySortObj.returnReference(a);
+    // mySortObj.quickSort();
+    // mySortObj.insertSort();
+    // mySortObj.bubbleSort();
+    // mySortObj.selectSort();
     // mySortObj.shellSort();
-    string a = "s54df5s";
-    cout<<mySortObj.returnReference(a);
+    // mySortObj.coutSort();
+    mySortObj.buckSort();
 }
