@@ -165,7 +165,7 @@ public:
         myPrint();
     }
 
-    void buckSort() {
+    void buckSort(){
         int len = array.size();
         int bucket[5001] = {0};
         for (int num:array) {
@@ -194,6 +194,32 @@ public:
         }
         myPrint();
     }
+
+    void adjust(int len, int index){
+        int left = 2*index + 1; // index的左子节点
+        int right = 2*index + 2;// index的右子节点
+    
+        int maxIdx = index;
+        if(left<len && array[left] > array[maxIdx])     maxIdx = left;
+        if(right<len && array[right] > array[maxIdx])     maxIdx = right;
+    
+        if(maxIdx != index)
+        {
+            swap(array[maxIdx], array[index]);
+            adjust(len, maxIdx);
+        }
+    }
+    void heapSort(){
+        int size = array.size();
+        //构建大根堆
+        for(int i=size/2-1; i>=0; i--) adjust(size, i);
+        //调整大根堆
+        for(int i=size-1; i>=1; i--){
+            swap(array[0], array[i]);
+            adjust(i, 0);
+        }
+        myPrint();
+    }
 };
 
 int main() {
@@ -207,5 +233,6 @@ int main() {
     // mySortObj.selectSort();
     // mySortObj.shellSort();
     // mySortObj.coutSort();
-    mySortObj.buckSort();
+    // mySortObj.buckSort();
+    mySortObj.heapSort();
 }
