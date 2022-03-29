@@ -82,11 +82,10 @@ def conv_backward_naive(dout, cache):
 			for j in range(W1):
 				# Window we want to apply the respective f th filter over (C, HH, WW)
 				x_window = x_pad[n, :, i * S : i * S + HH, j * S : j * S + WW]
-
-			for f in range(F):
-				dw[f] += x_window * dout[n, f, i, j] #F,C,HH,WW
-				#C,HH,WW
-				dx_pad[n, :, i * S : i * S + HH, j * S : j * S + WW] += w[f] * dout[n, f, i, j]
+				for f in range(F):
+					dw[f] += x_window * dout[n, f, i, j] #F,C,HH,WW
+					#C,HH,WW
+					dx_pad[n, :, i * S : i * S + HH, j * S : j * S + WW] += w[f] * dout[n, f, i, j]
 
 	dx = dx_pad[:, :, P:P+H, P:P+W]
 
