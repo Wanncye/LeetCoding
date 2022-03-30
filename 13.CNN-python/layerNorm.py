@@ -8,6 +8,10 @@ def Layernorm(x, gamma, beta):
 
     x_mean = np.mean(x, axis=(1, 2, 3), keepdims=True)
     x_var = np.var(x, axis=(1, 2, 3), keepdims=True)
+    #bn计算为
+    # x_mean = np.mean(x, axis=(0, 2, 3), keepdims=True)
+    # x_var = np.var(x, axis=(0, 2, 3), keepdims=True)
+    
     x_normalized = (x - x_mean) / np.sqrt(x_var + eps)
     results = gamma * x_normalized + beta
     return results
