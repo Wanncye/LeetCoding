@@ -1,3 +1,7 @@
+//第一题，跳跳人
+
+
+//第二题，求方程
 // #include<iostream>
 // #include<math.h>
 // using namespace std;
@@ -27,7 +31,7 @@
 // }
 
 
-
+//第三题，删除的是子串！子串！
 // #include<iostream>
 // #include<math.h>
 // #include<vector>
@@ -84,7 +88,7 @@
 
 
 
-
+//第四题找两个数的乘积，因子为6
 #include<iostream>
 #include<math.h>
 #include<vector>
