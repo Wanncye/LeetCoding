@@ -4,7 +4,8 @@ using namespace std;
 
 class A{
 public:
-    virtual void method(){
+    // virtual void method(){
+    void method(){
         cout<<"in class A"<<endl;
     }
 };
