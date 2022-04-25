@@ -55,11 +55,11 @@ public:
             if(root->left!=NULL && root->right!=NULL){
                 //找到当前节点的右子树的最左节点
                 TreeNode* cur=root->right;
-                while(!cur->left) cur=cur->left;
+                while(cur->left!=nullptr) cur=cur->left;
                 cur->left = root->left;
-                cur = root;
-                delete root;
-                return cur->right;
+                // cur = root;
+                // delete root;
+                return root->right;
             };
         }
         return root;
