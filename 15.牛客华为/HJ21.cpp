@@ -13,7 +13,7 @@ int main(){
             if(rem == 2 && n/3 == 0){
                 ans++;
                 break;
-            }else if(rem == 1) break;
+            }else if(rem == 1 && n/3 == 0) break;
             n = n / 3 + rem;
         }
         cout<<ans<<endl;
