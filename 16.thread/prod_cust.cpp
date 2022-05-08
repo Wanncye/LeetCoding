@@ -4,6 +4,8 @@
 #include<unistd.h>
 
 pthread_mutex_t mutex;
+pthread_cond_t cond;
+
 
 struct Node
 {
@@ -21,6 +23,9 @@ void* producer(void * arg){
         head = newNode;
         newNode->num = rand() % 1000;
         printf("add node, num : %d, tid : %ld\n", newNode->num, pthread_self());
+        //只要生产了一个就通知消费者消费
+        pthread_cond_signal(&cond);
+        
         pthread_mutex_unlock(&mutex);
         usleep(100);
     }
@@ -33,12 +38,14 @@ void* customer(void * arg){
         Node * tmp = head;
         if(head!=NULL){
             head = head->next;
-            printf("add node, num : %d, tid : %ld\n", tmp->num, pthread_self());
+            printf("del node, num : %d, tid : %ld\n", tmp->num, pthread_self());
             free(tmp);
 
             usleep(100);
             pthread_mutex_unlock(&mutex);
         }else{
+            // 没有数据，需要等待
+            pthread_cond_wait(&cond, &mutex);
             pthread_mutex_unlock(&mutex);
         }
     }
@@ -49,6 +56,7 @@ void* customer(void * arg){
 
 int main(){
     pthread_mutex_init(&mutex, NULL);
+    pthread_cond_init(&cond, NULL);
     pthread_t pids[5], cids[5];
     for(int i=0; i<5; i++){
         pthread_create(&pids[i], NULL, producer, NULL);
@@ -65,6 +73,7 @@ int main(){
     }
 
     pthread_mutex_destroy(&mutex);
+    pthread_cond_destroy(&cond);
     pthread_exit(NULL);
     return 0;
 }
