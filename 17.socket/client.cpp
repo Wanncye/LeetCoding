@@ -30,16 +30,18 @@ int main() {
     
     // 3. 通信
     char recvBuf[1024] = {0};
+    int i = 0;
     while(1) {
 
         char* data = "hello,i am client";
+
+        sprintf(recvBuf, "data : %d\n", i++);
         // 给客户端发送数据
-        write(fd, data , strlen(data));
-        printf("write successfully.\n");
+        write(fd, recvBuf , strlen(recvBuf));
+
         sleep(1);
         
         int len = read(fd, recvBuf, sizeof(recvBuf));
-        printf("read successfully.\n");
         if(len == -1) {
             perror("read");
             exit(-1);
@@ -50,7 +52,6 @@ int main() {
             printf("server closed...");
             break;
         }
-
     }
 
     // 关闭连接
