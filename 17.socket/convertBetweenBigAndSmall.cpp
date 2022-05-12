@@ -30,11 +30,20 @@ int main() {
     // htonl  转换IP
     unsigned char buf[4] = {192, 168, 1, 100};
     int num = *(int *)buf;
+    cout << hex << num << endl;
     int sum = htonl(num);
     unsigned char *p = (unsigned char *) &sum;
 
     printf("%d %d %d %d\n", *p, *(p+1), *(p+2), *(p+3));
     cout << "=======================" << endl;
+    cout << int(*p) << endl;
+    cout << int(*(p+1)) << endl;
+    cout << int(*(p+2)) << endl;
+    cout << int(*(p+3)) << endl;
+    cout << dec << int(*p) << endl;
+    cout << dec << int(*(p+1)) << endl;
+    cout << dec << int(*(p+2)) << endl;
+    cout << dec << int(*(p+3)) << endl;
 
     // ntohl
     unsigned char buf1[4] = {1, 1, 168, 192};
