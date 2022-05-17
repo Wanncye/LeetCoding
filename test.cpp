@@ -15,12 +15,15 @@ public:
     }
 };
 
+class A{
+public:
+    void m_print(){
+        cout << "class A" << endl;
+    }
+};
+
+
 int main(){
-    string a;
-    // string类只能使用+=操作符来进行int型和char型的操作
-    // a = a + 1 + 'A'; 就会报错
-    a += 1 + 'A';
-    cout << a << endl;
-    Solution stl;
-    stl.convertToTitle(12341234);
+    A *a = new A();
+    a->m_print();
 }
