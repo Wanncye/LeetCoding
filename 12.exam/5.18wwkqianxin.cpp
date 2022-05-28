@@ -5,7 +5,21 @@
 using namespace std;
 
 
+class A {
+    
+public:
+    A(){
+        
+    };
+    A(A &a){
+
+    };
+};
+
+
 int main(){
+    A a;
+    A b(a);
     // int val[] = {123,45,78,546};
     // char *name[] = {"hello", "how", "C++"};
     // cout<<setiosflags(ios::left) << setw(6) << name[2] << resetiosflags(ios::left)<<val[1]<<endl;
