@@ -10,7 +10,9 @@ public:
     void other(){
         cout<<"in class A, other fun"<<endl;
     }
+
     // int a = 1;
+    A& 
 };
 
 class B : public A{
@@ -24,11 +26,11 @@ public:
 };
 
 int main(){
-    // A *p = new A();
+    A *p = new A();
     // // p->a = 2;
     // B *b = new B();
     A p;
-    A c();
+    A c;
     // p = b;
     // obj.method();
     // obj.other();
