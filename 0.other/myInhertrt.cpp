@@ -10,11 +10,12 @@ public:
     void other(){
         cout<<"in class A, other fun"<<endl;
     }
+    // int a = 1;
 };
 
 class B : public A{
 public:
-    void method(){
+    virtual void method(){
         cout<<"in class B"<<endl;
     }
     void other(){
@@ -23,7 +24,12 @@ public:
 };
 
 int main(){
-    A * obj = new B();
-    obj->method();
-    obj->other();
+    // A *p = new A();
+    // // p->a = 2;
+    // B *b = new B();
+    A p;
+    A c();
+    // p = b;
+    // obj.method();
+    // obj.other();
 }
