@@ -1,4 +1,5 @@
 #include<iostream>
+#include<set>
 
 using namespace std;
 
@@ -16,6 +17,15 @@ void wcy(int, int){
     cout << "in wcy(int, int), no para obj" << endl;
 }
 
+
+class cmp{
+public:
+    bool operator()(const int& a, int b) const {
+        return a>b;
+    }
+};
+
+
 int main(){
     // int a = 2;
     // int b = 2;
@@ -28,14 +38,18 @@ int main(){
     // cout << sizeof(nullptr) <<endl;
 
 
-    int id = 0;
-    auto f = [id] () {
-        cout << "id:" << id <<endl;
-        ++id;
+    // int id = 0;
+    // auto f = [id] () {
+    //     cout << "id:" << id <<endl;
+    //     ++id;
+    // };
+    // id = 42;
+    // f();
+    // f();
+    // f();
+    // cout << "id:" << id <<endl;
+    auto f = [] (int a, int b) {
+        return a>b;
     };
-    id = 42;
-    f();
-    f();
-    f();
-    cout << "id:" << id <<endl;
+    set<int, decltype(f)> mySet(f);
 }
