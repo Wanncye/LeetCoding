@@ -1,5 +1,7 @@
 #include<iostream>
 #include<set>
+#include<string>
+#include<vector>
 
 using namespace std;
 
@@ -26,6 +28,10 @@ public:
 };
 
 
+// void * p = operator new(512);
+// void * a = new(p) int;
+// void * p = new int;
+
 int main(){
     // int a = 2;
     // int b = 2;
@@ -48,8 +54,13 @@ int main(){
     // f();
     // f();
     // cout << "id:" << id <<endl;
-    auto f = [] (int a, int b) {
-        return a>b;
-    };
-    set<int, decltype(f)> mySet(f);
+    // auto f = [] (int a, int b) {
+    //     return a>b;
+    // };
+    // set<int, decltype(f)> mySet(f);
+    string* str = new string("wcy");
+    vector<string> vec;
+    vec.push_back(*str);
+    delete str;
+    for(string i : vec) cout << i <<endl;
 }
