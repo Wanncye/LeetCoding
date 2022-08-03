@@ -1,17 +1,18 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
 
-#define MEM_SIZE 32 * 1024 * 1024 * 1024
+#include <iostream>
+#include <vector>
+using namespace std;
 
 int main() {
-    char* addr = (char*) malloc((long)MEM_SIZE);
-    printf("主线程调用malloc后，目前共申请了 32gb 的虚拟内存\n");
-    
-    //循环频繁访问虚拟内存
-    while(1) {
-          printf("开始访问 32gb 大小的虚拟内存...\n");
-          memset(addr, 0, (long)MEM_SIZE);
+    int n;
+    cin >> n;
+    int a[n];
+    a[0] = 0;
+    a[1] = 1;
+    a[2] = 2;
+    a[3] = 3;
+    a[4] = 4;
+    for(auto i = 0; i < n; i++){
+        cout << a[i] << endl;
     }
-    return 0;
 }
